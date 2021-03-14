@@ -114,10 +114,13 @@
 				var pair = vars[i].split("=");
 				kvs[decodeURI(pair[0])]=decodeURI(pair[1]);
 			}
+			alert("aaaa")
 			var y=(myFrame.contentWindow || myFrame.contentDocument);
 			if (y.document){
 				y=y.contentWindow;
 				alert("yes");
+			}else{
+				alert("false")
 			}
 			y.paramFromParent=kvs
 			return kvs
