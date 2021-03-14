@@ -130,18 +130,17 @@
 				var pair = vars[i].split("=");
 				kvs[decodeURI(pair[0])] = decodeURI(pair[1]);
 			}
-			alert("aaaa")
 			var y = (myFrame.contentWindow || myFrame.contentDocument);
 			if (y.document) {
 				y = y.document
 				alert("yes");
-				var labels =y.document.getElementsByClassName("col-md-6 col-sm-12")
+				var labels =y.getElementsByClassName("col-md-6 col-sm-12")
 				var dic = {}
 				for (var i = 0; i < labels.length; i++) {
 					text = labels[i].children[0].children[0].textContent
 					dic[text] = labels[i].children[0].children[1]
 				}
-				labels = y.document.getElementsByClassName("col-md-12 col-sm-12")
+				labels = y.getElementsByClassName("col-md-12 col-sm-12")
 				for (var i = 0; i < labels.length; i++) {
 					text = labels[i].children[0].children[0].textContent
 					dic[text] = labels[i].children[0].children[1]
