@@ -114,7 +114,6 @@
 				var pair = vars[i].split("=");
 				kvs[decodeURI(pair[0])]=decodeURI(pair[1]);
 			}
-			myFrame.postMessage()
 			myFrame.contentWindow.paramFromParent = 'userId0007'
 			return kvs
 		}
