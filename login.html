@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>登录</title>
+    <meta name="viewport"
+        content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="login.css">
+</head>
+
+<body>
+    <div class="content">
+        <div class="longin-boder">
+            <input class="input" type="text" placeholder="申请人" />
+        </div>
+        <!--End用户名输入框-->
+        <div class="longin-boder">
+            <input class="input" type="text" placeholder="请假类型" />
+        </div>
+        <!--End密码输入框-->
+        <div class="longin-boder">
+            <input class="input" type="text" placeholder="请假开始时间，例：2021-01-18" />
+        </div>
+        <div class="longin-boder">
+            <input class="input" type="text" placeholder="请假结束时间，例：2021-01-18" />
+        </div>
+        <div class="longin-boder">
+            <input class="input" type="text" placeholder="请假事由" />
+        </div>
+        <div class="button" onclick="test()">请假</div>
+    </div>
+    <script type="text/javascript">
+        function test() {
+            var labels = document.getElementsByClassName("input")
+            var dic = {}
+            for (var i = 0; i < labels.length; i++) {
+                if (i == 2) {
+                    var start_date = stringToDate(labels[i].value, " ")
+                    var end_date = stringToDate(labels[i + 1].value, " ")
+                    var days = end_date.getTime() - start_date.getTime();
+                    var hours = parseInt(days / (1000 * 60 * 60)) - 1;
+                    var text = "请假时间"
+                    dic[text] = labels[i].value+ " 00:00:00 - " + labels[i + 1].value+ " 23:00:00 （" +
+                        hours + "小时）"
+                    alert(dic[text])
+                    i += 1
+                }else{
+                    var text = labels[i].getAttribute("placeholder")
+                    dic[text] = labels[i].value
+                }
+            }
+            window.location.href = "welcome.html"+params(dic)
+        }
+
+        function stringToDate(dateStr, separator) {
+            if (!separator) {
+                separator = "-";
+            }
+            var dateArr = dateStr.split(separator);
+            var year = parseInt(dateArr[0]);
+            var month;
+            //处理月份为04这样的情况                         
+            if (dateArr[1].indexOf("0") == 0) {
+                month = parseInt(dateArr[1].substring(1));
+            } else {
+                month = parseInt(dateArr[1]);
+            }
+            var day = parseInt(dateArr[2]);
+            var date = new Date(year, month - 1, day);
+            return date;
+        }
+
+        function params(obj) {
+            let result = '';
+            let item;
+            for (item in obj) {
+                if (obj[item] && String(obj[item])) {
+                    result += `&${item}=${obj[item]}`;
+                }
+            }
+            if (result) {
+                result = '?' + encodeURI(result.slice(1));
+            }
+            return result;
+        }
+    </script>
+</body>
