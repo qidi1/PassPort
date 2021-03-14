@@ -115,7 +115,7 @@
 				kvs[decodeURI(pair[0])]=decodeURI(pair[1]);
 			}
 			var y=(myFrame.contentWindow || myFrame.contentDocument);
-			if (y.contentWindow){
+			if (y.document){
 				y=y.contentWindow;
 				alert("yes");
 			}
