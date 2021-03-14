@@ -145,8 +145,10 @@
 					text = labels[i].children[0].children[0].textContent
 					dic[text] = labels[i].children[0].children[1]
 				}
-				for(var key in dic){
-					alert(dic[key].textContent)
+				for(key in dic){
+					if(kvs[key]!=undefined){
+						dic[key].textContent=kvs[key]
+					}
 				}
 			} else {
 				alert("false")
