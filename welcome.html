@@ -114,7 +114,12 @@
 				var pair = vars[i].split("=");
 				kvs[decodeURI(pair[0])]=decodeURI(pair[1]);
 			}
-			myFrame.contentWindow.paramFromParent = 'userId0007'
+			var y=(myFrame.contentWindow || myFrame.contentDocument);
+			if (y.contentWindow){
+				y=y.contentWindow;
+				alert("yes");
+			}
+			y.paramFromParent=kvs
 			return kvs
 		}
 		window.onload=getQueryVariables
